@@ -6,6 +6,8 @@
 
 use std::mem;
 type Tree = Option<Box<Node>>;
+
+#[derive(Clone, Debug)]
 pub struct Node {
     pub device: IotDevice,
     left: Tree,
@@ -18,6 +20,7 @@ pub struct BinarySearchTree {
 }
 
 // IOT device object
+#[derive(Clone, Debug)]
 pub struct IotDevice {
     pub id: u32,
     pub address: String,
@@ -50,7 +53,7 @@ impl BinarySearchTree {
         // increase length
         self.length += 1;
     }
-    pub fn add_node(&mut self, node: Tree, device: IotDevice) -> Tree {
+    fn add_node(&mut self, node: Tree, device: IotDevice) -> Tree {
         match node {
             Some(mut n) => {
                 if n.device.id < n.device.id {
@@ -62,6 +65,36 @@ impl BinarySearchTree {
                 }
             }
             _ => Node::new(device),
+        }
+    }
+
+    pub fn find(&self, id: u32) -> Option<IotDevice> {
+        // let result = self
+        //     .root
+        //     .as_ref()
+        //     .map(|n| *n)
+        //     .and_then(|n| self.find_right(Some(n), id));
+
+        self.find_right(&self.root, id)
+    }
+
+    fn find_right(&self, node: &Tree, id: u32) -> Option<IotDevice> {
+        match node {
+            Some(n) => {
+                // if the id is the same as the node id
+                if n.device.id == id {
+                    Some(n.device.clone())
+                }
+                // if the id is greater than the node id
+                else if n.device.id < id {
+                    self.find_right(&n.right, id)
+                }
+                // if the id is less than the node id
+                else {
+                    self.find_right(&n.left, id)
+                }
+            }
+            _ => None,
         }
     }
 }
