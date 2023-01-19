@@ -1,4 +1,3 @@
-mod binary_search_tree;
 /* REQUIREMENTS
 1. Store IoT device objects (containing the IP address, numerical name, and type)
 2. Retrieve IoT objects by numerical name
