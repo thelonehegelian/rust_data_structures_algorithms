@@ -98,3 +98,56 @@ impl BinarySearchTree {
         }
     }
 }
+
+// set up tests
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_add() {
+        let mut tree = BinarySearchTree::new();
+        let device = IotDevice {
+            id: 1,
+            address: "12".to_string(),
+        };
+        tree.add(device);
+        assert_eq!(tree.length, 1);
+    }
+    // test find
+    #[test]
+    fn test_find() {
+        let mut tree = BinarySearchTree::new();
+        let device = IotDevice {
+            id: 1,
+            address: "12".to_string(),
+        };
+        tree.add(device);
+        let device = IotDevice {
+            id: 2,
+            address: "12".to_string(),
+        };
+        tree.add(device);
+    }
+    // test find right
+    #[test]
+    fn test_find_right() {
+        let mut tree = BinarySearchTree::new();
+        let device = IotDevice {
+            id: 1,
+            address: "12".to_string(),
+        };
+        tree.add(device);
+        let device = IotDevice {
+            id: 2,
+            address: "12".to_string(),
+        };
+        tree.add(device);
+        let device = IotDevice {
+            id: 3,
+            address: "12".to_string(),
+        };
+        // let find = Some(tree.find(16));
+        // assert_eq!(find, device);
+    }
+}
