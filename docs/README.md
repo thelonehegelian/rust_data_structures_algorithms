@@ -30,10 +30,3 @@ In this case, the RefCell is used to wrap a Vec<binary_search_tree::IotDevice> s
 
 Also, by using RefCell, it allows for the same easy-to-use interface for immutable and mutable references and all the borrow checking is done at runtime, allowing us to mutate the value inside the RefCell even if it's already borrowed.
 
-TODO: 
----
-
-- [ ] Fix tests in binary_search_tree
-- [ ] Fix this error: @error[E0275]: overflow evaluating the requirement `[closure@src/main.rs:16:20: 16:55]: Fn<(&IotDevice,)>`
-  |
-  = help: consider increasing the recursion limit by adding a `#![recursion_limit = "256"]` attribute to your crate (`data_structures_algorithms`)
