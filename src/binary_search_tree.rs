@@ -97,6 +97,22 @@ impl BinarySearchTree {
             _ => None,
         }
     }
+    // tree traveresal
+
+    pub fn traverse(&self, callback: impl Fn(&IotDevice) -> ()) {
+        self.traverse_node_in_order(&self.root, &callback);
+    }
+
+    fn traverse_node_in_order(&self, node: &Tree, callback: impl Fn(&IotDevice) -> ()) {
+        match node {
+            Some(n) => {
+                self.traverse_node_in_order(&n.left, &callback);
+                callback(&n.device);
+                self.traverse_node_in_order(&n.right, &callback);
+            }
+            _ => (),
+        }
+    }
 }
 
 // set up tests
